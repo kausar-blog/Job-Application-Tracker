@@ -9,8 +9,7 @@
     <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- DaisyUI -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css"
@@ -39,6 +38,233 @@
     </style>
   </head>
   <body>
-    <h1 class="bg-red-500">kausar</h1>
+    <!-- header Section start -->
+    <header class="container mx-auto px-4 py-6">
+      <h1 class="text-center text-4xl md:text-6xl font-extrabold mb-6 pb-5">
+        Job Application Tracker
+      </h1>
+      <!--  -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="card bg-base-200 p-5 shadow-md rounded-lg text-center">
+          <p class="text-gray-600 font-medium">Total</p>
+          <p
+            id="appTotal"
+            class="text-2xl md:text-3xl font-bold text-black mt-2"
+            >0</p
+          >
+        </div>
+        <div class="card bg-base-200 p-5 shadow-md rounded-lg text-center">
+          <p class="text-gray-600 font-medium">Interview</p>
+          <p
+            id="appInterview"
+            class="text-2xl md:text-3xl font-bold text-green-500 mt-2"
+            >0</p
+          >
+        </div>
+        <div class="card bg-base-200 p-5 shadow-md rounded-lg text-center">
+          <p class="text-gray-600 font-medium">Rejected Applications</p>
+          <p
+            id="appRejected"
+            class="text-2xl md:text-3xl font-bold text-red-500 mt-2"
+            >0</p
+          >
+        </div>
+      </div>
+    </header>
+    <hr class="my-6 border-t-2 border-gray-300" />
+
+    <!-- main part -->
+    <main class="container mx-auto px-4 py-6">
+      <!-- Filter and Jobs Info -->
+      <div class="flex justify-between items-center mb-6">
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button
+            id="filterAll"
+            onclick="toggleStyle('filterAll')"
+            class="btn btn-primary btn-sm"
+            type="button"
+          >
+            All
+          </button>
+          <button
+            id="filterInterview"
+            onclick="toggleStyle('filterInterview')"
+            class="btn btn-outline btn-sm"
+            type="button"
+          >
+            Interview
+          </button>
+
+          <button
+            id="filterRejected"
+            onclick="toggleStyle('filterRejected')"
+            class="btn btn-outline btn-sm"
+            type="button"
+          >
+            Rejected
+          </button>
+        </div>
+        <!-- jobs info -->
+        <div>
+          <p class="text-gray-700 font-medium"
+            ><span id="jobsCount">0</span> jobs</p
+          >
+        </div>
+      </div>
+
+      <!-- filtered section new-->
+      <section id="filteredSection" class="hidden"> </section>
+
+      <!-- filtered card -->
+      <section id="jobCards" class="space-y-6">
+        <!-- card template 1 -->
+        <div
+          class="flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100"
+        >
+          <!-- main Contain -->
+          <div class="space-y-4 md:space-y-6 flex-1">
+            <!-- title and position -->
+            <div>
+              <p class="jobCompany text-2xl md:text-3xl font-bold"
+                >Mobile First Corp</p
+              >
+              <p class="jobPosition text-gray-600">React Native Developer</p>
+            </div>
+            <!-- location / type / salary -->
+            <div class="flex flex-wrap gap-2">
+              <span class="jobDetails badge badge-outline">Remote</span>
+              <span class="jobDetails badge badge-outline">Full-time</span>
+              <span class="jobDetails badge badge-outline">$3000 - $4000</span>
+            </div>
+            <!-- status -->
+            <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
+
+            <!-- notes  -->
+            <p class="jobNotes text-gray-700"
+              >Build cross-platform mobile applications using React Native. Work
+              on products used by millions of users worldwide.</p
+            >
+
+            <!-- actions buttons -->
+            <div class="flex flex-wrap gap-3">
+              <button class="btn btn-success btn-sm" type="button"
+                >Interview</button
+              >
+              <button class="btn btn-error btn-sm" type="button"
+                >Rejected</button
+              >
+            </div>
+          </div>
+
+          <!-- delete buttons -->
+          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+            <button class="btn btn-outline btn-error btn-sm" type="button"
+              >Delete</button
+            >
+          </div>
+        </div>
+        <!-- card template 2 -->
+        <div
+          class="flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100"
+        >
+          <!-- main Contain -->
+          <div class="space-y-4 md:space-y-6 flex-1">
+            <!-- title and position -->
+            <div>
+              <p class="jobCompany text-2xl md:text-3xl font-bold"
+                >WebFlow Agency</p
+              >
+              <p class="jobPosition text-gray-600">Web Designer & Developer</p>
+            </div>
+            <!-- location / type / salary -->
+            <div class="flex flex-wrap gap-2">
+              <span class="jobDetails badge badge-outline"
+                >Los Angeles, CA
+              </span>
+              <span class="jobDetails badge badge-outline">Part-time </span>
+              <span class="jobDetails badge badge-outline">$3000 - $4000</span>
+            </div>
+
+            <!-- status -->
+            <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
+
+            <!-- notes  -->
+            <p class="jobNotes text-gray-700"
+              >Create stunning web experiences for high-profile clients. Must
+              have portfolio and experience with modern web design trends.</p
+            >
+
+            <!-- actions buttons -->
+            <div class="flex flex-wrap gap-3">
+              <button class="btn btn-success btn-sm" type="button"
+                >Interview</button
+              >
+              <button class="btn btn-error btn-sm" type="button"
+                >Rejected</button
+              >
+            </div>
+          </div>
+
+          <!-- delete buttons -->
+          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+            <button class="btn btn-outline btn-error btn-sm" type="button"
+              >Delete</button
+            >
+          </div>
+        </div>
+        <!-- card template 3 -->
+        <div
+          class="flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100"
+        >
+          <!-- main Contain -->
+          <div class="space-y-4 md:space-y-6 flex-1">
+            <!-- title and position -->
+            <div>
+              <p class="jobCompany text-2xl md:text-3xl font-bold"
+                >DataViz Solutions</p
+              >
+              <p class="jobPosition text-gray-600"
+                >Data Visualization Specialist</p
+              >
+            </div>
+            <!-- location / type / salary -->
+            <div class="flex flex-wrap gap-2">
+              <span class="jobDetails badge badge-outline">Boston, MA</span>
+              <span class="jobDetails badge badge-outline">Full-time</span>
+              <span class="jobDetails badge badge-outline">$3000 - $4000</span>
+            </div>
+            <!-- status -->
+            <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
+
+            <!-- notes  -->
+            <p class="jobNotes text-gray-700"
+              >Transform complex data into compelling visualizations. Required
+              skills: D3.js, React, and strong analytical thinking.
+            </p>
+
+            <!-- actions buttons -->
+            <div class="flex flex-wrap gap-3">
+              <button class="btn btn-success btn-sm" type="button"
+                >Interview</button
+              >
+              <button class="btn btn-error btn-sm" type="button"
+                >Rejected</button
+              >
+            </div>
+          </div>
+
+          <!-- delete buttons -->
+          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+            <button class="btn btn-outline btn-error btn-sm" type="button"
+              >Delete</button
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- js link -->
+    <script src="./js/script.js"></script>
   </body>
 </html>
