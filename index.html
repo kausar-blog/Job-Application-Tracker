@@ -107,10 +107,13 @@
         </div>
         <!-- jobs info -->
         <div>
-          <p class="text-gray-700 font-medium"
-            ><span id="jobsCount">0</span> jobs</p
-          >
-        </div>
+          <p class="text-gray-700 font-medium">
+            <span id="job-info-count" class="hidden"
+              ><span id="visibleJobsCount">0 </span> of</span
+            >
+            <span id="jobsCount">0</span> jobs
+          </p></div
+        >
       </div>
 
       <!-- filtered section new-->
@@ -126,7 +129,7 @@
           <div class="space-y-4 md:space-y-6 flex-1">
             <!-- title and position -->
             <div>
-              <p class="jobCompany text-2xl md:text-3xl font-bold"
+              <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
                 >Mobile First Corp</p
               >
               <p class="jobPosition text-gray-600">React Native Developer</p>
@@ -157,7 +160,9 @@
 
           <!-- delete buttons -->
           <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
-            <button class="btn btn-outline btn-error btn-sm" type="button"
+            <button
+              class="delete-btn btn btn-outline btn-error btn-sm"
+              type="button"
               >Delete</button
             >
           </div>
@@ -170,7 +175,7 @@
           <div class="space-y-4 md:space-y-6 flex-1">
             <!-- title and position -->
             <div>
-              <p class="jobCompany text-2xl md:text-3xl font-bold"
+              <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
                 >WebFlow Agency</p
               >
               <p class="jobPosition text-gray-600">Web Designer & Developer</p>
@@ -215,7 +220,7 @@
           <div class="space-y-4 md:space-y-6 flex-1">
             <!-- title and position -->
             <div>
-              <p class="jobCompany text-2xl md:text-3xl font-bold"
+              <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
                 >DataViz Solutions</p
               >
               <p class="jobPosition text-gray-600"
