@@ -2,10 +2,10 @@ let jobsInterviewed = [];
 let jobsRejected = [];
 let currentStatus = "all";
 
-const totalJobsEl = document.getElementById("appTotal");
-const interviewCountEl = document.getElementById("appInterview");
-const rejectedCountEl = document.getElementById("appRejected");
-const jobsDisplayCountEl = document.getElementById("jobsCount");
+let totalJobsEl = document.getElementById("appTotal");
+let interviewCountEl = document.getElementById("appInterview");
+let rejectedCountEl = document.getElementById("appRejected");
+let jobsDisplayCountEl = document.getElementById("jobsCount");
 
 const btnFilterAll = document.getElementById("filterAll");
 const btnFilterInterview = document.getElementById("filterInterview");
@@ -44,15 +44,17 @@ function toggleStyle(id) {
   currentStatus = id;
 
   //
-  if (id == "btnFilterInterview") {
+  if (id == "filterInterview") {
     jobCardsContainer.classList.add("hidden");
     sectionFilteredJobs.classList.remove("hidden");
+    renderInterview();
   } else if (id == "filterAll") {
     jobCardsContainer.classList.remove("hidden");
     sectionFilteredJobs.classList.add("hidden");
   } else if (id == "filterRejected") {
     jobCardsContainer.classList.add("hidden");
     sectionFilteredJobs.classList.remove("hidden");
+    renderRejected();
   }
 }
 
@@ -60,14 +62,11 @@ function toggleStyle(id) {
 
 mainEl.addEventListener("click", (event) => {
   if (event.target.classList.contains("interview-btn")) {
-    console.log("kausar");
-
     const parentNode = event.target.parentNode.parentNode;
     const jobCompany = parentNode.querySelector(".jobCompany").innerText;
     const jobPosition = parentNode.querySelector(".jobPosition").innerText;
     const jobDetails = parentNode.querySelector(".jobDetails").innerText;
     let jobStatus = parentNode.querySelector(".jobStatus").innerText;
-    jobStatus = "Interview";
     const jobNotes = parentNode.querySelector(".jobNotes").innerText;
 
     const jobInfo = {
@@ -78,19 +77,95 @@ mainEl.addEventListener("click", (event) => {
       jobNotes,
     };
 
-    console.log(jobInfo);
+    jobStatus = "Interview";
+    // console.log(jobInfo);
+
+    const jobExist = jobsInterviewed.find(
+      (item) => item.jobCompany == jobInfo.jobCompany,
+    );
+
+    if (!jobExist) {
+      jobsInterviewed.push(jobInfo);
+    }
+
+    jobsRejected = jobsRejected.filter(
+      (item) => item.jobCompany != jobInfo.jobCompany,
+    );
+
+    if (currentStatus == "filterRejected") {
+      renderRejected();
+    }
+
+    calculateCount();
+  } else if (event.target.classList.contains("rejected-btn")) {
+    const parentNode = event.target.parentNode.parentNode;
+    // console.log(parentNode);
+    const jobCompany = parentNode.querySelector(".jobCompany").innerText;
+    const jobPosition = parentNode.querySelector(".jobPosition").innerText;
+    const jobDetails = parentNode.querySelector(".jobDetails").innerText;
+    let jobStatus = parentNode.querySelector(".jobStatus").innerText;
+    const jobNotes = parentNode.querySelector(".jobNotes").innerText;
+
+    const jobInfo = {
+      jobCompany,
+      jobPosition,
+      jobDetails,
+      jobStatus: "Rejected",
+      jobNotes,
+    };
+
+    jobStatus = "Interview";
+    // console.log(jobInfo);
+
+    const jobExist = jobsRejected.find(
+      (item) => item.jobCompany == jobInfo.jobCompany,
+    );
+
+    if (!jobExist) {
+      jobsRejected.push(jobInfo);
+    }
+
+    jobsInterviewed = jobsInterviewed.filter(
+      (item) => item.jobCompany != jobInfo.jobCompany,
+    );
+
+    if (currentStatus == "filterInterview") {
+      renderInterview();
+    }
 
     calculateCount();
   }
 });
 
 // 4 new html file created
-/* function renderInterview() {
+function renderInterview() {
   sectionFilteredJobs.innerHTML = "";
 
-  let div = document.createElement("div");
+  for (let interview of jobsInterviewed) {
+    // console.log(interview);
 
-  div.innerHTML = "<p>Hello Kausar</p>";
+    let div = document.createElement("div");
+    div.classList =
+      "flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100";
 
-  sectionFilteredJobs.appendChild(div);
-} */
+    div.innerHTML = `<p>Hello Kausar ${interview.jobCompany}</p>`;
+
+    sectionFilteredJobs.appendChild(div);
+  }
+}
+
+function renderRejected() {
+  sectionFilteredJobs.innerHTML = "";
+
+  for (let rejected of jobsRejected) {
+    // console.log(interview);
+
+    let div = document.createElement("div");
+    div.classList =
+      "flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100";
+
+    div.innerHTML = `<p>Hello blogger ${rejected.jobCompany}</p>`;
+
+    sectionFilteredJobs.appendChild(div);
+  }
+}
