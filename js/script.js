@@ -19,11 +19,22 @@ const mainEl = document.querySelector("main");
 
 // 1 update counts
 function calculateCount() {
-  totalJobsEl.innerText = jobCardsContainer.children.length;
-  jobsDisplayCountEl.innerText = jobCardsContainer.children.length;
+  const totalJobs = jobCardsContainer.children.length;
+  totalJobsEl.innerText = totalJobs;
+  jobsDisplayCountEl.innerText = totalJobs;
 
   interviewCountEl.innerText = jobsInterviewed.length;
   rejectedCountEl.innerText = jobsRejected.length;
+
+  if (currentStatus === "filterInterview") {
+    visibleJobsCountEl.innerText = jobsInterviewed.length;
+    jobInfoCount.classList.remove("hidden");
+  } else if (currentStatus === "filterRejected") {
+    visibleJobsCountEl.innerText = jobsRejected.length;
+    jobInfoCount.classList.remove("hidden");
+  } else {
+    jobInfoCount.classList.add("hidden");
+  }
 }
 
 calculateCount();
@@ -80,18 +91,25 @@ function toggleStyle(id) {
 // 3 card actions delegation
 
 mainEl.addEventListener("click", (event) => {
-  // console.log(event.target.classList.contains("delete-btn"));
-  // if (event.target.classList.contains("delete-btn")) {
-  //   const parentNode = event.target.parentNode.parentNode;
-  //   // console.log(parentNode);
-  //   // parentNode()
-  // }
-  if (event.target.classList.contains("interview-btn")) {
-    const parentNode = event.target.parentNode.parentNode;
+  const btn = event.target;
+
+  if (btn.classList.contains("delete-btn")) {
+    const card = btn.closest(".border");
+    const jobCompany = card.querySelector(".jobCompany").innerText;
+
+    jobsInterviewed = jobsInterviewed.filter(
+      (job) => job.jobCompany !== jobCompany,
+    );
+    jobsRejected = jobsRejected.filter((job) => job.jobCompany !== jobCompany);
+
+    card.remove();
+    calculateCount();
+  }
+  if (btn.classList.contains("interview-btn")) {
+    const parentNode = btn.closest(".border");
     const jobCompany = parentNode.querySelector(".jobCompany").innerText;
     const jobPosition = parentNode.querySelector(".jobPosition").innerText;
     const jobDetails = parentNode.querySelector(".jobDetails").innerText;
-    const jobStatus = parentNode.querySelector(".jobStatus").innerText;
     const jobNotes = parentNode.querySelector(".jobNotes").innerText;
 
     const jobInfo = {
@@ -103,7 +121,6 @@ mainEl.addEventListener("click", (event) => {
     };
 
     parentNode.querySelector(".jobStatus").innerText = "Interview";
-    // console.log(jobInfo);
 
     const jobExist = jobsInterviewed.find(
       (item) =>
@@ -111,29 +128,21 @@ mainEl.addEventListener("click", (event) => {
         item.jobPosition == jobInfo.jobPosition,
     );
 
-    if (!jobExist) {
-      jobsInterviewed.push(jobInfo);
-    }
+    if (!jobExist) jobsInterviewed.push(jobInfo);
 
     jobsRejected = jobsRejected.filter(
       (item) => item.jobCompany != jobInfo.jobCompany,
     );
 
-    if (currentStatus == "filterRejected") {
-      renderRejected();
-    }
+    if (currentStatus == "filterRejected") renderRejected();
 
     calculateCount();
-  } else if (event.target.classList.contains("rejected-btn")) {
-    const parentNode = event.target.parentNode.parentNode;
-    // console.log(parentNode);
+  } else if (btn.classList.contains("rejected-btn")) {
+    const parentNode = btn.closest(".border");
     const jobCompany = parentNode.querySelector(".jobCompany").innerText;
     const jobPosition = parentNode.querySelector(".jobPosition").innerText;
     const jobDetails = parentNode.querySelector(".jobDetails").innerText;
-    const jobStatus = parentNode.querySelector(".jobStatus").innerText;
     const jobNotes = parentNode.querySelector(".jobNotes").innerText;
-
-    parentNode.querySelector(".jobStatus").innerText = "Rejected";
 
     const jobInfo = {
       jobCompany,
@@ -142,8 +151,7 @@ mainEl.addEventListener("click", (event) => {
       jobStatus: "Rejected",
       jobNotes,
     };
-
-    // console.log(jobInfo);
+    parentNode.querySelector(".jobStatus").innerText = "Rejected";
 
     const jobExist = jobsRejected.find(
       (item) =>
@@ -151,17 +159,13 @@ mainEl.addEventListener("click", (event) => {
         item.jobPosition == jobInfo.jobPosition,
     );
 
-    if (!jobExist) {
-      jobsRejected.push(jobInfo);
-    }
+    if (!jobExist) jobsRejected.push(jobInfo);
 
     jobsInterviewed = jobsInterviewed.filter(
       (item) => item.jobCompany != jobInfo.jobCompany,
     );
 
-    if (currentStatus == "filterInterview") {
-      renderInterview();
-    }
+    if (currentStatus == "filterInterview") renderInterview();
 
     calculateCount();
   }
@@ -170,7 +174,6 @@ mainEl.addEventListener("click", (event) => {
 // 4 new html file created
 function renderInterview() {
   sectionFilteredJobs.innerHTML = "";
-  visibleJobsCountEl.innerText = jobsInterviewed.length;
 
   for (let interview of jobsInterviewed) {
     // console.log(interview);
@@ -210,12 +213,14 @@ function renderInterview() {
               >
             </div>
           </div>
-          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+          <div class="mt-4 md:mt-0 md:ml-4">
             <button
-              class="delete-btn btn btn-outline btn-error btn-sm"
+              class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
               type="button"
-              >Delete</button
+              title="Delete"
             >
+              <i class="delete-btn fa-solid fa-trash"></i>
+            </button>
           </div>
     
     
@@ -227,7 +232,6 @@ function renderInterview() {
 
 function renderRejected() {
   sectionFilteredJobs.innerHTML = "";
-  visibleJobsCountEl.innerText = jobsRejected.length;
 
   for (let rejected of jobsRejected) {
     // console.log(interview);
@@ -267,12 +271,14 @@ function renderRejected() {
               >
             </div>
           </div>
-          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+          <div class="mt-4 md:mt-0 md:ml-4">
             <button
-              class="delete-btn btn btn-outline btn-error btn-sm"
+              class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
               type="button"
-              >Delete</button
+              title="Delete"
             >
+              <i class="delete-btn fa-solid fa-trash"></i>
+            </button>
           </div>
     
     
