@@ -128,13 +128,17 @@ mainEl.addEventListener("click", (event) => {
         item.jobPosition == jobInfo.jobPosition,
     );
 
-    if (!jobExist) jobsInterviewed.push(jobInfo);
+    if (!jobExist) {
+      jobsInterviewed.push(jobInfo);
+    }
 
     jobsRejected = jobsRejected.filter(
       (item) => item.jobCompany != jobInfo.jobCompany,
     );
 
-    if (currentStatus == "filterRejected") renderRejected();
+    if (currentStatus == "filterRejected") {
+      renderRejected();
+    }
 
     calculateCount();
   } else if (btn.classList.contains("rejected-btn")) {
@@ -159,14 +163,17 @@ mainEl.addEventListener("click", (event) => {
         item.jobPosition == jobInfo.jobPosition,
     );
 
-    if (!jobExist) jobsRejected.push(jobInfo);
+    if (!jobExist) {
+      jobsRejected.push(jobInfo);
+    }
 
     jobsInterviewed = jobsInterviewed.filter(
       (item) => item.jobCompany != jobInfo.jobCompany,
     );
 
-    if (currentStatus == "filterInterview") renderInterview();
-
+    if (currentStatus == "filterInterview") {
+      renderInterview();
+    }
     calculateCount();
   }
 });
@@ -174,6 +181,7 @@ mainEl.addEventListener("click", (event) => {
 // 4 new html file created
 function renderInterview() {
   sectionFilteredJobs.innerHTML = "";
+  visibleJobsCountEl.innerText = jobsInterviewed.length;
 
   for (let interview of jobsInterviewed) {
     // console.log(interview);
@@ -232,6 +240,7 @@ function renderInterview() {
 
 function renderRejected() {
   sectionFilteredJobs.innerHTML = "";
+  visibleJobsCountEl.innerText = jobsRejected.length;
 
   for (let rejected of jobsRejected) {
     // console.log(interview);
