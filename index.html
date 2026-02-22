@@ -79,17 +79,11 @@
       <div class="flex justify-between items-center mb-6">
         <!-- Filter Buttons -->
         <div class="flex flex-wrap gap-2">
-          <button
-            id="filterAll"
-            onclick="toggleStyle('filterAll')"
-            class="btn btn-primary btn-sm"
-            type="button"
-          >
+          <button id="filterAll" class="btn btn-primary btn-sm" type="button">
             All
           </button>
           <button
             id="filterInterview"
-            onclick="toggleStyle('filterInterview')"
             class="btn btn-outline btn-sm"
             type="button"
           >
@@ -98,7 +92,6 @@
 
           <button
             id="filterRejected"
-            onclick="toggleStyle('filterRejected')"
             class="btn btn-outline btn-sm"
             type="button"
           >
@@ -112,12 +105,12 @@
               ><span id="visibleJobsCount">0 </span> of</span
             >
             <span id="jobsCount">0</span> jobs
-          </p></div
-        >
+          </p>
+        </div>
       </div>
 
       <!-- filtered section new-->
-      <section id="filteredIntRej" class="hidden"> </section>
+      <section id="filteredIntRej" class="hidden space-y-6"> </section>
 
       <!-- filtered card -->
       <section id="jobCards" class="space-y-6">
@@ -207,7 +200,9 @@
 
           <!-- delete buttons -->
           <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
-            <button class="btn btn-outline btn-error btn-sm" type="button"
+            <button
+              class="delete-btn btn btn-outline btn-error btn-sm"
+              type="button"
               >Delete</button
             >
           </div>
@@ -254,7 +249,9 @@
 
           <!-- delete buttons -->
           <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
-            <button class="btn btn-outline btn-error btn-sm" type="button"
+            <button
+              class="delete-btn btn btn-outline btn-error btn-sm"
+              type="button"
               >Delete</button
             >
           </div>

@@ -1,6 +1,6 @@
 let jobsInterviewed = [];
 let jobsRejected = [];
-let currentStatus = "all";
+let currentStatus = "filterAll";
 
 let totalJobsEl = document.getElementById("appTotal");
 let interviewCountEl = document.getElementById("appInterview");
@@ -29,6 +29,15 @@ function calculateCount() {
 calculateCount();
 
 // 2 button toggle & display
+btnFilterAll.addEventListener("click", () => toggleStyle("filterAll"));
+
+btnFilterInterview.addEventListener("click", () =>
+  toggleStyle("filterInterview"),
+);
+
+btnFilterRejected.addEventListener("click", () =>
+  toggleStyle("filterRejected"),
+);
 
 function toggleStyle(id) {
   // removing color for all
@@ -71,6 +80,12 @@ function toggleStyle(id) {
 // 3 card actions delegation
 
 mainEl.addEventListener("click", (event) => {
+  // console.log(event.target.classList.contains("delete-btn"));
+  // if (event.target.classList.contains("delete-btn")) {
+  //   const parentNode = event.target.parentNode.parentNode;
+  //   // console.log(parentNode);
+  //   // parentNode()
+  // }
   if (event.target.classList.contains("interview-btn")) {
     const parentNode = event.target.parentNode.parentNode;
     const jobCompany = parentNode.querySelector(".jobCompany").innerText;
@@ -91,7 +106,9 @@ mainEl.addEventListener("click", (event) => {
     // console.log(jobInfo);
 
     const jobExist = jobsInterviewed.find(
-      (item) => item.jobCompany == jobInfo.jobCompany,
+      (item) =>
+        item.jobCompany == jobInfo.jobCompany &&
+        item.jobPosition == jobInfo.jobPosition,
     );
 
     if (!jobExist) {
@@ -129,7 +146,9 @@ mainEl.addEventListener("click", (event) => {
     // console.log(jobInfo);
 
     const jobExist = jobsRejected.find(
-      (item) => item.jobCompany == jobInfo.jobCompany,
+      (item) =>
+        item.jobCompany == jobInfo.jobCompany &&
+        item.jobPosition == jobInfo.jobPosition,
     );
 
     if (!jobExist) {
@@ -191,6 +210,13 @@ function renderInterview() {
               >
             </div>
           </div>
+          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+            <button
+              class="delete-btn btn btn-outline btn-error btn-sm"
+              type="button"
+              >Delete</button
+            >
+          </div>
     
     
     `;
@@ -240,6 +266,13 @@ function renderRejected() {
                 >Rejected</button
               >
             </div>
+          </div>
+          <div class="mt-4 md:mt-0 md:ml-4 shrink-0">
+            <button
+              class="delete-btn btn btn-outline btn-error btn-sm"
+              type="button"
+              >Delete</button
+            >
           </div>
     
     
