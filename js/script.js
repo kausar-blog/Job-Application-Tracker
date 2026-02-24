@@ -18,6 +18,10 @@ const jobCardsContainer = document.getElementById("jobCards");
 const sectionFilteredJobs = document.getElementById("filteredIntRej");
 const mainEl = document.querySelector("main");
 
+const deleteModal = document.getElementById("delete_modal");
+const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+let cardToDelete = null; // temporarily store the card to delete
+
 // 1 update counts
 function calculateCount() {
   const totalJobs = jobCardsContainer.children.length;
@@ -148,17 +152,11 @@ function toggleStyle(id) {
 mainEl.addEventListener("click", (event) => {
   const btn = event.target;
 
-  if (btn.classList.contains("delete-btn")) {
+  // If delete icon/button clicked
+  if (btn.classList.contains("delete-btn") || btn.closest(".delete-btn")) {
     const card = btn.closest(".border");
-    const jobCompany = card.querySelector(".jobCompany").innerText;
-
-    jobsInterviewed = jobsInterviewed.filter(
-      (job) => job.jobCompany !== jobCompany,
-    );
-    jobsRejected = jobsRejected.filter((job) => job.jobCompany !== jobCompany);
-
-    card.remove();
-    calculateCount();
+    cardToDelete = card; // store temporarily
+    deleteModal.showModal(); // open modal
   }
   if (btn.classList.contains("interview-btn")) {
     const parentNode = btn.closest(".border");
@@ -275,6 +273,34 @@ mainEl.addEventListener("click", (event) => {
     }
     calculateCount();
   }
+});
+
+// Confirm delete
+confirmDeleteBtn.addEventListener("click", () => {
+  if (!cardToDelete) return;
+
+  const jobCompany = cardToDelete.querySelector(".jobCompany").innerText;
+  const jobPosition = cardToDelete.querySelector(".jobPosition").innerText;
+
+  // Remove from arrays
+  jobsInterviewed = jobsInterviewed.filter(
+    (item) =>
+      !(item.jobCompany === jobCompany && item.jobPosition === jobPosition),
+  );
+  jobsRejected = jobsRejected.filter(
+    (item) =>
+      !(item.jobCompany === jobCompany && item.jobPosition === jobPosition),
+  );
+
+  // Remove card from DOM
+  cardToDelete.remove();
+  cardToDelete = null;
+
+  // Recalculate counts
+  calculateCount();
+
+  // Close modal
+  deleteModal.close();
 });
 
 // 4 new html file created
