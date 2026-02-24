@@ -60,6 +60,7 @@ function toggleStyle(id) {
   } else if (id == "filterAll") {
     jobCardsContainer.classList.remove("hidden");
     sectionFilteredJobs.classList.add("hidden");
+    syncAllCardsStatus();
   } else if (id == "filterRejected") {
     jobCardsContainer.classList.add("hidden");
     sectionFilteredJobs.classList.remove("hidden");

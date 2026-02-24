@@ -32,3 +32,39 @@
 .animate-fadeIn {
   animation: fadeIn 0.8s ease-out forwards;
 }
+
+/* img */
+
+@keyframes floatImage {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: floatImage 3s ease-in-out infinite;
+}
+
+/* pulse effect */
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0px rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(139, 92, 246, 0.4);
+  }
+}
+
+.animate-glow {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
