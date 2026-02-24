@@ -43,3 +43,46 @@
 .dashboard-card:hover .dashboard-icon {
   transform: rotate(6deg) scale(1.1);
 }
+
+/* line */
+@keyframes lineMove {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.animate-lineMove {
+  animation: lineMove 2.5s linear infinite;
+  opacity: 0.7;
+}
+
+/* main  start*/
+
+/* Base filter button */
+.filter-btn {
+  background: transparent;
+  color: #374151;
+  cursor: pointer; /* add this */
+}
+
+#appTotal,
+#appInterview,
+#appRejected {
+  transition: all 0.4s ease-in-out;
+}
+
+/* Hover effect */
+.filter-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4f46e5;
+}
+
+/* Active button */
+.active-filter {
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  color: white;
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
