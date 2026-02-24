@@ -53,19 +53,73 @@ btnFilterRejected.addEventListener("click", () =>
 
 function toggleStyle(id) {
   // removing color for all
-  btnFilterAll.classList.remove("btn-primary");
-  btnFilterInterview.classList.remove("btn-primary");
-  btnFilterRejected.classList.remove("btn-primary");
+  btnFilterAll.classList.remove(
+    "bg-gradient-to-r",
+    "from-indigo-500",
+    "to-purple-500",
+    "text-white",
+    "active-filter",
+  );
+  btnFilterInterview.classList.remove(
+    "bg-gradient-to-r",
+    "from-indigo-500",
+    "to-purple-500",
+    "text-white",
+    "active-filter",
+    "bg-transparent",
+    "text-black",
+    "hover:bg-green-100",
+    "hover:text-green-600",
+  );
+  btnFilterRejected.classList.remove(
+    "bg-gradient-to-r",
+    "from-indigo-500",
+    "to-purple-500",
+    "text-white",
+    "active-filter",
+    "bg-transparent",
+    "text-black",
+    "hover:bg-red-100",
+    "hover:text-red-600",
+  );
 
-  // adding color for all
-  btnFilterAll.classList.add("btn-outline");
-  btnFilterInterview.classList.add("btn-outline");
-  btnFilterRejected.classList.add("btn-outline");
+  // adding inactive color for all
+  btnFilterAll.classList.add(
+    "bg-transparent",
+    "text-black",
+    "hover:bg-purple-100",
+    "hover:text-purple-600",
+  );
+  btnFilterInterview.classList.add(
+    "bg-transparent",
+    "text-black",
+    "hover:bg-green-100",
+    "hover:text-green-600",
+  );
+  btnFilterRejected.classList.add(
+    "bg-transparent",
+    "text-black",
+    "hover:bg-red-100",
+    "hover:text-red-600",
+  );
 
-  // highlight present on the click
+  // highlight clicked button
   const selectedBtn = document.getElementById(id);
-  selectedBtn.classList.remove("btn-outline");
-  selectedBtn.classList.add("btn-primary");
+  selectedBtn.classList.remove(
+    "bg-transparent",
+    "text-black",
+    "hover:bg-green-100",
+    "hover:text-green-600",
+    "hover:bg-red-100",
+    "hover:text-red-600",
+  );
+  selectedBtn.classList.add(
+    "bg-gradient-to-r",
+    "from-indigo-500",
+    "to-purple-500",
+    "text-white",
+    "active-filter",
+  );
 
   currentStatus = id;
 
