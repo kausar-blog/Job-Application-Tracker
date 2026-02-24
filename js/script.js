@@ -12,6 +12,7 @@ const btnFilterAll = document.getElementById("filterAll");
 const btnFilterInterview = document.getElementById("filterInterview");
 const btnFilterRejected = document.getElementById("filterRejected");
 const jobInfoCount = document.getElementById("job-info-count");
+const activeColor = document.getElementById("active-color");
 
 const jobCardsContainer = document.getElementById("jobCards");
 const sectionFilteredJobs = document.getElementById("filteredIntRej");
@@ -111,6 +112,30 @@ mainEl.addEventListener("click", (event) => {
     const jobPosition = parentNode.querySelector(".jobPosition").innerText;
     const jobDetails = parentNode.querySelector(".jobDetails").innerText;
     const jobNotes = parentNode.querySelector(".jobNotes").innerText;
+    const jobStatus = parentNode.querySelector(".jobStatus");
+
+    jobStatus.innerText = "Interview";
+
+    jobStatus.classList.remove(
+      "text-gray-500",
+      "text-red-600",
+      "border-indigo-600",
+      "text-red-500",
+      "border-red-500",
+      "hover:bg-indigo-600",
+      "hover:text-white",
+      "hover:bg-red-500",
+    );
+
+    jobStatus.classList.add(
+      "text-green-600",
+      "border-green-500",
+      "hover:bg-green-500",
+      "hover:text-white",
+    );
+
+    activeColor.classList.remove("bg-gray-300", "bg-red-300");
+    activeColor.classList.add("bg-green-300");
 
     const jobInfo = {
       jobCompany,
@@ -119,8 +144,6 @@ mainEl.addEventListener("click", (event) => {
       jobStatus: "Interview",
       jobNotes,
     };
-
-    parentNode.querySelector(".jobStatus").innerText = "Interview";
 
     const jobExist = jobsInterviewed.find(
       (item) =>
@@ -148,6 +171,29 @@ mainEl.addEventListener("click", (event) => {
     const jobDetails = parentNode.querySelector(".jobDetails").innerText;
     const jobNotes = parentNode.querySelector(".jobNotes").innerText;
 
+    const jobStatus = parentNode.querySelector(".jobStatus");
+
+    jobStatus.innerText = "Rejected";
+
+    jobStatus.classList.remove(
+      "text-gray-500",
+      "border-indigo-600",
+      "text-blue-600",
+      "border-blue-500",
+      "hover:bg-indigo-600",
+      "hover:text-white",
+      "hover:bg-blue-500",
+    );
+
+    jobStatus.classList.add(
+      "text-red-600",
+      "border-red-500",
+      "hover:bg-red-500",
+      "hover:text-white",
+    );
+
+    activeColor.classList.remove("bg-gray-300", "bg-green-300");
+    activeColor.classList.add("bg-red-300");
     const jobInfo = {
       jobCompany,
       jobPosition,
@@ -155,7 +201,6 @@ mainEl.addEventListener("click", (event) => {
       jobStatus: "Rejected",
       jobNotes,
     };
-    parentNode.querySelector(".jobStatus").innerText = "Rejected";
 
     const jobExist = jobsRejected.find(
       (item) =>

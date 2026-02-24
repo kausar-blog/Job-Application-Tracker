@@ -180,153 +180,182 @@
       <section id="filteredIntRej" class="hidden space-y-6"> </section>
 
       <!-- filtered card -->
-      <section id="jobCards" class="space-y-6">
+      <section id="jobCards" class="space-y-6 px-4 md:px-0">
         <!-- card template 1 -->
         <div
-          class="flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100"
+          class="flex border rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105"
         >
-          <!-- main Contain -->
-          <div class="space-y-4 md:space-y-6 flex-1">
-            <!-- title and position -->
-            <div>
-              <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
+          <div
+            id="active-color"
+            class="w-1.5 bg-gray-300 rounded transition-all duration-300"
+          ></div>
+          <div
+            class="flex flex-col md:flex-row justify-between p-6 w-full gap-4"
+          >
+            <!-- main Contain -->
+            <div class="space-y-4 md:space-y-6 flex-1">
+              <!-- title and position -->
+              <p
+                class="jobCompany text-2xl md:text-3xl font-bold mb-3 text-gray-900"
                 >Mobile First Corp</p
               >
-              <p class="jobPosition text-gray-600">React Native Developer</p>
-            </div>
-            <!-- location / type / salary -->
-            <div class="jobDetails text-gray-600 text-sm md:text-base">
-              Remote • Full-time • $130,000 - $175,000
-            </div>
-            <!-- status -->
-            <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
-
-            <!-- notes  -->
-            <p class="jobNotes text-gray-700"
-              >Build cross-platform mobile applications using React Native. Work
-              on products used by millions of users worldwide.</p
-            >
-
-            <!-- actions buttons -->
-            <div class="flex flex-wrap gap-3">
-              <button class="interview-btn btn btn-success btn-sm" type="button"
-                >Interview</button
+              <p class="jobPosition text-gray-600 text-sm md:text-base"
+                >React Native Developer</p
               >
-              <button class="rejected-btn btn btn-error btn-sm" type="button"
-                >Rejected</button
+              <!-- location / type / salary -->
+              <p class="jobDetails text-gray-600 text-sm md:text-base">
+                Remote • Full-time • $130,000 - $175,000
+              </p>
+              <!-- status -->
+              <p
+                class="jobStatus inline-flex items-center justify-center px-4 py-1 text-xs md:text-sm font-medium text-gray-500 border border-indigo-600 rounded-full uppercase transition-all duration-300 hover:bg-indigo-600 hover:text-white cursor-pointer select-none"
               >
-            </div>
-          </div>
+                Not Applied
+              </p>
 
-          <!-- delete buttons -->
-          <div class="mt-4 md:mt-0 md:ml-4">
-            <button
-              class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
-              type="button"
-              title="Delete"
-            >
-              <i class="delete-btn fa-solid fa-trash"></i>
-            </button>
+              <!-- notes  -->
+              <p
+                class="jobNotes text-gray-700 text-sm md:text-base leading-relaxed"
+                >Build cross-platform mobile applications using React Native.
+                Work on products used by millions of users worldwide.</p
+              >
+
+              <!-- actions buttons -->
+              <div class="flex flex-wrap gap-3 pt-2">
+                <button
+                  class="interview-btn btn btn-success btn-outline btn-xs md:btn-sm px-4 border-green-500 text-green-500 hover:bg-green-500 hover:text-white uppercase"
+                  type="button"
+                  >Interview</button
+                >
+                <button
+                  class="rejected-btn btn btn-error btn-outline btn-xs md:btn-sm px-4 border-red-500 text-red-500 hover:bg-red-500 hover:text-white uppercase"
+                  type="button"
+                  >Rejected</button
+                >
+              </div>
+            </div>
+
+            <!-- delete buttons -->
+            <div class="mt-4 md:mt-0 flex items-start">
+              <button
+                class="delete-btn text-gray-500 hover:text-red-500 transition-colors text-lg"
+                type="button"
+                title="Delete"
+              >
+                <i class="delete-btn fa-solid fa-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
         <!-- card template 2 -->
-        <div
-          class="flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100"
-        >
-          <!-- main Contain -->
-          <div class="space-y-4 md:space-y-6 flex-1">
-            <!-- title and position -->
-            <div>
-              <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
-                >WebFlow Agency</p
+
+        <div class="flex border rounded-lg overflow-hidden">
+          <div id="active-color" class="w-[5px]"></div>
+
+          <div class="flex flex-col md:flex-row justify-between p-6 w-full">
+            <!-- main Contain -->
+            <div class="space-y-4 md:space-y-6 flex-1">
+              <!-- title and position -->
+              <div>
+                <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
+                  >WebFlow Agency</p
+                >
+                <p class="jobPosition text-gray-600"
+                  >Web Designer & Developer</p
+                >
+              </div>
+              <!-- location / type / salary -->
+              <div class="jobDetails text-gray-600 text-sm md:text-base">
+                Los Angeles, CA • Part-time • $3000 - $4000
+              </div>
+
+              <!-- status -->
+              <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
+
+              <!-- notes  -->
+              <p class="jobNotes text-gray-700"
+                >Create stunning web experiences for high-profile clients. Must
+                have portfolio and experience with modern web design trends.</p
               >
-              <p class="jobPosition text-gray-600">Web Designer & Developer</p>
+
+              <!-- actions buttons -->
+              <div class="flex flex-wrap gap-3">
+                <button
+                  class="interview-btn btn btn-success btn-sm"
+                  type="button"
+                  >Interview</button
+                >
+                <button class="rejected-btn btn btn-error btn-sm" type="button"
+                  >Rejected</button
+                >
+              </div>
             </div>
-            <!-- location / type / salary -->
-            <div class="jobDetails text-gray-600 text-sm md:text-base">
-              Los Angeles, CA • Part-time • $3000 - $4000
-            </div>
 
-            <!-- status -->
-            <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
-
-            <!-- notes  -->
-            <p class="jobNotes text-gray-700"
-              >Create stunning web experiences for high-profile clients. Must
-              have portfolio and experience with modern web design trends.</p
-            >
-
-            <!-- actions buttons -->
-            <div class="flex flex-wrap gap-3">
-              <button class="interview-btn btn btn-success btn-sm" type="button"
-                >Interview</button
+            <!-- delete buttons -->
+            <div class="mt-4 md:mt-0 md:ml-4">
+              <button
+                class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
+                type="button"
+                title="Delete"
               >
-              <button class="rejected-btn btn btn-error btn-sm" type="button"
-                >Rejected</button
-              >
+                <i class="delete-btn fa-solid fa-trash"></i>
+              </button>
             </div>
-          </div>
-
-          <!-- delete buttons -->
-          <div class="mt-4 md:mt-0 md:ml-4">
-            <button
-              class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
-              type="button"
-              title="Delete"
-            >
-              <i class="delete-btn fa-solid fa-trash"></i>
-            </button>
           </div>
         </div>
         <!-- card template 3 -->
-        <div
-          class="flex flex-col md:flex-row justify-between border rounded-lg p-4 bg-base-100"
-        >
-          <!-- main Contain -->
-          <div class="space-y-4 md:space-y-6 flex-1">
-            <!-- title and position -->
-            <div>
-              <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
-                >DataViz Solutions</p
-              >
-              <p class="jobPosition text-gray-600"
-                >Data Visualization Specialist</p
-              >
+        <div class="flex border rounded-lg overflow-hidden">
+          <div id="active-color" class="w-[5px]"></div>
+
+          <div class="flex flex-col md:flex-row justify-between p-6 w-full">
+            <!-- main Contain -->
+            <div class="space-y-4 md:space-y-6 flex-1">
+              <!-- title and position -->
+              <div>
+                <p class="jobCompany text-2xl md:text-3xl font-bold mb-3"
+                  >DataViz Solutions</p
+                >
+                <p class="jobPosition text-gray-600"
+                  >Data Visualization Specialist</p
+                >
+              </div>
+              <!-- location / type / salary -->
+              <div class="jobDetails text-gray-600 text-sm md:text-base">
+                Boston, MA • Full-time • $3000 - $4000
+              </div>
+
+              <!-- status -->
+              <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
+
+              <!-- notes  -->
+              <p class="jobNotes text-gray-700"
+                >Transform complex data into compelling visualizations. Required
+                skills: D3.js, React, and strong analytical thinking.
+              </p>
+
+              <!-- actions buttons -->
+              <div class="flex flex-wrap gap-3">
+                <button
+                  class="interview-btn btn btn-success btn-sm"
+                  type="button"
+                  >Interview</button
+                >
+                <button class="rejected-btn btn btn-error btn-sm" type="button"
+                  >Rejected</button
+                >
+              </div>
             </div>
-            <!-- location / type / salary -->
-            <div class="jobDetails text-gray-600 text-sm md:text-base">
-              Boston, MA • Full-time • $3000 - $4000
-            </div>
 
-            <!-- status -->
-            <p class="jobStatus text-gray-500 font-medium">Not Applied</p>
-
-            <!-- notes  -->
-            <p class="jobNotes text-gray-700"
-              >Transform complex data into compelling visualizations. Required
-              skills: D3.js, React, and strong analytical thinking.
-            </p>
-
-            <!-- actions buttons -->
-            <div class="flex flex-wrap gap-3">
-              <button class="interview-btn btn btn-success btn-sm" type="button"
-                >Interview</button
+            <!-- delete buttons -->
+            <div class="mt-4 md:mt-0 md:ml-4">
+              <button
+                class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
+                type="button"
+                title="Delete"
               >
-              <button class="rejected-btn btn btn-error btn-sm" type="button"
-                >Rejected</button
-              >
+                <i class="delete-btn fa-solid fa-trash"></i>
+              </button>
             </div>
-          </div>
-
-          <!-- delete buttons -->
-          <div class="mt-4 md:mt-0 md:ml-4">
-            <button
-              class="delete-btn btn btn-error btn-sm bg-transparent border-0 p-2 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:bg-error hover:text-white"
-              type="button"
-              title="Delete"
-            >
-              <i class="delete-btn fa-solid fa-trash"></i>
-            </button>
           </div>
         </div>
       </section>
